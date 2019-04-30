@@ -45,7 +45,8 @@ app.post('/api/new', (req, res) => {
 })
 
 app.get('*', (req, res) => {
-	return res.sendFile(path.join(__dirname, '../frontend/dist/index.html'))
+	// return res.sendFile(path.join(__dirname, '../frontend/dist/index.html'))
+	return res.json({ status: 'ok', path: req.path })
 })
 
 app.listen(1234, _ => console.log('Up'))

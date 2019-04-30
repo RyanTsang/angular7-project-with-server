@@ -1,32 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 
-interface myData {
-  status: "ok" | "error",
-  data: string
+interface ResponseData {
+  status: 'ok' | 'error';
+  data: string;
 }
 
 @Injectable()
 export class AuthService {
 
-  private loggedInStatus = false
+  private loggedInStatus = false;
 
   constructor(private http: HttpClient) { }
 
   setLoggedIn(value: boolean) {
-    this.loggedInStatus = value
+    this.loggedInStatus = value;
   }
 
   get isLoggedIn() {
-    return this.loggedInStatus
+    return this.loggedInStatus;
   }
 
   getUserDetails(username, password) {
     // post these details to API server return user info if correct
-    return this.http.post<myData>('/api/auth/', { // http://localhost:1234/api/auth
-      username,
-      password
-    })
+    return this.http.post<ResponseData>('/api/auth/', {username, password});
   }
 
 }
