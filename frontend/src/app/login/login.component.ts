@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private Auth: AuthService,
+  constructor(private auth: AuthService,
               private router: Router) { }
 
   ngOnInit() {
@@ -21,10 +21,10 @@ export class LoginComponent implements OnInit {
     const username = target.querySelector('#username').value;
     const password = target.querySelector('#password').value;
 
-    this.Auth.getUserDetails(username, password).subscribe(({ status, data }) => {
+    this.auth.getUserDetails(username, password).subscribe(({ status, data }) => {
       if(status === 'ok') {
-        this.router.navigate(['admin']);
-        this.Auth.setLoggedIn(true);
+        this.router.navigate(['dashboard']);
+        this.auth.setLoggedIn(true);
       } else {
         window.alert(data);
       }

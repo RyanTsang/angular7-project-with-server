@@ -21,9 +21,13 @@ export class AuthService {
     return this.loggedInStatus;
   }
 
-  getUserDetails(username, password) {
+  getUserDetails(email: string, password: string) {
     // post these details to API server return user info if correct
-    return this.http.post<ResponseData>('/api/auth/', {username, password});
+    return this.http.post<ResponseData>('/api/login/', {email, password});
   }
 
+  registerUser(email: string, password: string) {
+    // post these details to API server return user info if correct
+    return this.http.post<ResponseData>('/api/register/', {email, password});
+  }
 }
