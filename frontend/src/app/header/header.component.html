@@ -1,0 +1,8 @@
+<div id='header'>
+  <h1>My App is the best</h1>
+  <div id='links'>
+    <a href='/dashboard'>{{ greeting }}</a>
+    <a *ngIf='!appState.login' routerLink='/login'>Login</a>
+    <a *ngIf='appState.login' routerLink='/logout'>Logout</a>
+  </div>
+</div>

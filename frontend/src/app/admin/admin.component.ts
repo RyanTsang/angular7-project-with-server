@@ -7,27 +7,26 @@ import { UserService } from '../user.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
-	quote = "Loading...."
+  private quote = 'Loading....';
 
   constructor(private user: UserService) { }
 
   ngOnInit() {
-    this.user.getSomeData().subscribe(({ status, data }) => {
-		if(status === 'ok') {
-			this.quote = data
-		} else {
-			this.quote = "[SOMETHING WENT WRONG!]"
-		}
-    })
+    this.user.getData().subscribe(({ status, user }) => {
+    if (status === 'ok') {
+      this.quote = user.quote;
+    } else {
+      this.quote = '[SOMETHING WENT WRONG!]';
+    }
+    });
   }
 
   saveQuote(quoteText: string) {
-	  console.log(quoteText)
-	  this.quote = quoteText
-	  this.user.saveNewQuote(quoteText).subscribe(({status}) => {
-		  // cool
-	  })
+    console.log(quoteText);
+    this.quote = quoteText;
+    this.user.updateQuote(quoteText).subscribe(({status}) => {
+      // TODO use RXJS to rewrite it.
+    });
   }
 
 }
